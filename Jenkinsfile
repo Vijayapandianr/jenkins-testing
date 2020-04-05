@@ -6,8 +6,13 @@ pipeline {
             parallel {
         
         stage ('satge one') {
-
+           when {
+         expression {
+                return env.BRANCH_NAME == 'develop';
+            }
+        }
             steps {
+                 
                 echo 'stage one'
                 }
             }
@@ -16,6 +21,7 @@ pipeline {
         stage ('Second Stage') {
 
             steps {
+                input message: 'Approve Deploy?', ok: 'Yes'
                 echo 'stage one'
                 }
             }
